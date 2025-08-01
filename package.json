@@ -1,0 +1,82 @@
+{
+  "name": "@aid-on/llm-throttle",
+  "version": "1.0.0",
+  "description": "高精度なLLMレート制限ライブラリ - Precise dual rate limiting for LLM APIs (RPM + TPM)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "prepublishOnly": "npm run build && npm run type-check",
+    "demo:dev": "vite demo",
+    "demo:build": "vite build",
+    "demo:preview": "vite preview demo",
+    "deploy:manual": "npm run build && npm run demo:build && gh-pages -d demo-dist"
+  },
+  "keywords": [
+    "rate-limit",
+    "throttle",
+    "llm",
+    "api",
+    "rpm",
+    "tpm",
+    "token-bucket",
+    "rate-limiting",
+    "openai",
+    "anthropic",
+    "typescript"
+  ],
+  "author": "aid-on",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.0.0",
+    "gh-pages": "^6.3.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.4.19",
+    "vitest": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "@aid-on/fuzztok": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aid-On/llm-throttle.git"
+  },
+  "homepage": "https://aid-on.github.io/llm-throttle/",
+  "bugs": {
+    "url": "https://github.com/Aid-On/llm-throttle/issues"
+  }
+}
