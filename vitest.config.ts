@@ -4,6 +4,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    watch: false,
+    run: true,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

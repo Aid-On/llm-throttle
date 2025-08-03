@@ -22,7 +22,7 @@
     "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
-    "test": "vitest",
+    "test": "vitest run",
     "test:coverage": "vitest --coverage",
     "prepublishOnly": "npm run build && npm run type-check",
     "demo:dev": "vite demo",
