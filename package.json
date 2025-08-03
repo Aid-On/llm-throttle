@@ -1,6 +1,6 @@
 {
   "name": "@aid-on/llm-throttle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "高精度なLLMレート制限ライブラリ - Precise dual rate limiting for LLM APIs (RPM + TPM)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
