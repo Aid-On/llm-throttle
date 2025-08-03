@@ -1,13 +1,13 @@
 export interface Logger {
-  warn(message: string, ...args: any[]): void;
-  error(message: string, ...args: any[]): void;
-  info(message: string, ...args: any[]): void;
-  debug(message: string, ...args: any[]): void;
+  warn(message: string, ...args: unknown[]): void;
+  error(message: string, ...args: unknown[]): void;
+  info(message: string, ...args: unknown[]): void;
+  debug(message: string, ...args: unknown[]): void;
 }
 
 export type AdjustmentFailureStrategy = 'strict' | 'warn' | 'compensate';
 
-export interface ValidationRule<T = any> {
+export interface ValidationRule<T = unknown> {
   name: string;
   validate: (value: T) => boolean | string;
   level: 'error' | 'warn';
@@ -41,7 +41,7 @@ export interface DualRateLimitConfig {
   /** Storage configuration for persistence */
   storage?: {
     enabled?: boolean;
-    implementation?: any; // Will be ThrottleStorage, but avoiding circular dependency
+    implementation?: unknown; // Will be ThrottleStorage, but avoiding circular dependency
   };
 }
 

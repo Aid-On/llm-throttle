@@ -61,7 +61,7 @@ describe('LLMThrottle Concurrency', () => {
   });
 
   it('should handle mixed concurrent operations', async () => {
-    const operations: Promise<any>[] = [];
+    const operations: Promise<unknown>[] = [];
     
     // Mix consume and adjust operations
     for (let i = 0; i < 20; i++) {
@@ -84,7 +84,7 @@ describe('LLMThrottle Concurrency', () => {
   });
 
   it('should maintain consistency under high concurrency', async () => {
-    const operations: Promise<any>[] = [];
+    const operations: Promise<unknown>[] = [];
     let consumeCount = 0;
     
     // Create 100 concurrent operations

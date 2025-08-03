@@ -8,11 +8,11 @@ export class TokenBucket {
   private _refillRate: number;
   private _lastRefill: number;
   private _clock: () => number;
-  private _storage?: ThrottleStorage<any>;
+  private _storage?: ThrottleStorage<unknown>;
   private _storageKey?: string;
   private _initialized: boolean = false;
 
-  constructor(config: TokenBucketConfig, storage?: ThrottleStorage<any>) {
+  constructor(config: TokenBucketConfig, storage?: ThrottleStorage<unknown>) {
     this.validateConfig(config);
     
     this._capacity = config.capacity;

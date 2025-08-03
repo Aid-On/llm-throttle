@@ -21,7 +21,7 @@ async function loadFuzztok(): Promise<boolean> {
 
   try {
     // Dynamic import to handle optional dependency
-    // @ts-ignore - Optional dependency may not be available
+    // @ts-expect-error - Optional dependency may not be available
     fuzztokModule = await import('@aid-on/fuzztok');
     fuzztokAvailable = true;
     return true;

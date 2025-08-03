@@ -17,7 +17,7 @@ import { ThrottleStorage, InMemoryStorage } from './storage/index.js';
 /**
  * Enhanced configuration for LLMThrottle with clear storage options
  */
-export interface LLMThrottleConfig {
+export interface LLMThrottleConfig<TMetadata = Record<string, unknown>> {
   /** Requests per minute limit */
   rpm: number;
   /** Tokens per minute limit */
@@ -39,11 +39,11 @@ export interface LLMThrottleConfig {
   /** Enable monotonic clock (auto-detected by default) */
   monotonicClock?: boolean;
   /** Custom validation rules */
-  validationRules?: any[]; // ValidationRule[] - avoiding circular dependency
+  validationRules?: Array<{name: string; validate: (value: unknown) => boolean | string; level: 'error' | 'warn'}>;
   /** Number of records to use for efficiency calculation (defaults to 50) */
   efficiencyWindowSize?: number;
   /** Storage implementation for persistence */
-  storage?: ThrottleStorage<any>;
+  storage?: ThrottleStorage<TMetadata>;
 }
 
 /**
@@ -70,7 +70,7 @@ export class LLMThrottle<TMetadata = Record<string, unknown>> {
    * Create a new LLMThrottle instance
    * @param config Configuration including optional storage implementation
    */
-  constructor(config: LLMThrottleConfig) {
+  constructor(config: LLMThrottleConfig<TMetadata>) {
     // Convert to DualRateLimitConfig for validation
     const legacyConfig = {
       ...config,
@@ -732,13 +732,13 @@ export class LLMThrottle<TMetadata = Record<string, unknown>> {
 
 // Factory functions for common use cases
 export function createLLMThrottle<TMetadata = Record<string, unknown>>(
-  config: LLMThrottleConfig
+  config: LLMThrottleConfig<TMetadata>
 ): LLMThrottle<TMetadata> {
   return new LLMThrottle<TMetadata>(config);
 }
 
 export function createLLMThrottleWithStorage<TMetadata = Record<string, unknown>>(
-  config: Omit<LLMThrottleConfig, 'storage'>,
+  config: Omit<LLMThrottleConfig<TMetadata>, 'storage'>,
   storage: ThrottleStorage<TMetadata>
 ): LLMThrottle<TMetadata> {
   return new LLMThrottle<TMetadata>({

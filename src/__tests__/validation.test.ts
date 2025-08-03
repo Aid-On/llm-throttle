@@ -4,7 +4,7 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { LLMThrottle } from '../index.js';
-import { validateConfig, validateAndNormalizeConfig, defaultValidationRules } from '../utils/validation.js';
+import { validateConfig, validateAndNormalizeConfig } from '../utils/validation.js';
 import type { DualRateLimitConfig, ValidationRule, Logger } from '../types/index.js';
 
 describe('Configuration Validation', () => {
@@ -222,9 +222,9 @@ describe('Configuration Validation', () => {
     });
 
     it('should handle null/undefined configuration', () => {
-      expect(() => validateAndNormalizeConfig(null as any)).toThrow('Config must be an object');
-      expect(() => validateAndNormalizeConfig(undefined as any)).toThrow('Config must be an object');
-      expect(() => validateAndNormalizeConfig('invalid' as any)).toThrow('Config must be an object');
+      expect(() => validateAndNormalizeConfig(null as never)).toThrow('Config must be an object');
+      expect(() => validateAndNormalizeConfig(undefined as never)).toThrow('Config must be an object');
+      expect(() => validateAndNormalizeConfig('invalid' as never)).toThrow('Config must be an object');
     });
   });
 

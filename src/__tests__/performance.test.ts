@@ -2,7 +2,7 @@
  * Performance and long-running tests
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { LLMThrottle } from '../index.js';
 
 describe('LLMThrottle Performance', () => {

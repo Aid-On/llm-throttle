@@ -4,7 +4,7 @@
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { LLMThrottle } from '../index.js';
-import type { Logger, StateSnapshot } from '../types/index.js';
+import type { Logger } from '../types/index.js';
 
 describe('LLMThrottle Advanced Features', () => {
   let mockLogger: Logger;
@@ -63,7 +63,7 @@ describe('LLMThrottle Advanced Features', () => {
       await limiter.consume('test-1', 100);
       
       // Force some corruption via private property access
-      (limiter as any).compensationDebt = -50; // Invalid negative debt
+      (limiter as never).compensationDebt = -50; // Invalid negative debt
       
       expect(limiter.validateState()).toBe(false);
       
@@ -144,7 +144,7 @@ describe('LLMThrottle Advanced Features', () => {
         requestId: `bulk-${i}`,
         estimatedTokens: 10
       }));
-      (memoryLimiter as any).consumptionHistory = manyRecords;
+      (memoryLimiter as never).consumptionHistory = manyRecords;
       
       // Now trigger cleanup by calling getMetrics
       const metrics = memoryLimiter.getMetrics();
@@ -176,7 +176,7 @@ describe('LLMThrottle Advanced Features', () => {
       });
       
       // Add some records
-      (retentionLimiter as any).consumptionHistory = [
+      (retentionLimiter as never).consumptionHistory = [
         { timestamp: now - 2000, requestId: 'old', tokens: 10 },
         { timestamp: now - 500, requestId: 'recent', tokens: 20 },
         { timestamp: now, requestId: 'current', tokens: 30 }

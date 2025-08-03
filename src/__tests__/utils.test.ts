@@ -2,10 +2,10 @@
  * Utility modules tests
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { AsyncLock } from '../utils/async-lock.js';
 import { createOptimalClock, createMonotonicClock, createStandardClock, getClockInfo } from '../utils/clock.js';
-import { estimateTokens, isFuzztokAvailable, robustEstimateTokens, simpleFallbackEstimate } from '../utils/fuzztok-integration.js';
+import { isFuzztokAvailable, robustEstimateTokens, simpleFallbackEstimate } from '../utils/fuzztok-integration.js';
 
 describe('AsyncLock', () => {
   let lock: AsyncLock;
@@ -165,8 +165,8 @@ describe('Fuzztok Integration', () => {
 
   it('should handle empty text', () => {
     expect(simpleFallbackEstimate('')).toBe(0);
-    expect(simpleFallbackEstimate(null as any)).toBe(0);
-    expect(simpleFallbackEstimate(undefined as any)).toBe(0);
+    expect(simpleFallbackEstimate(null as never)).toBe(0);
+    expect(simpleFallbackEstimate(undefined as never)).toBe(0);
   });
 
   it('should provide reasonable estimates for different text types', () => {
