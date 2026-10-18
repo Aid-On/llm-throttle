@@ -28,7 +28,7 @@
     "demo:dev": "vite demo",
     "demo:build": "vite build",
     "demo:preview": "vite preview demo",
-    "deploy:manual": "npm run build && npm run demo:build && gh-pages -d demo-dist"
+    "deploy:manual": "npm run build && npm run demo:build && npx --yes gh-pages@6.3.0 -d demo-dist"
   },
   "keywords": [
     "rate-limit",
@@ -49,12 +49,11 @@
     "@types/node": "^20.0.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.71.1",
+    "@typescript-eslint/parser": "^8.71.1",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/coverage-v8": "^4.1.11",
-    "eslint": "^8.0.0",
-    "gh-pages": "^6.3.0",
+    "eslint": "^8.57.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tsup": "^8.0.0",

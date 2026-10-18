@@ -25,7 +25,7 @@ async function loadFuzztok(): Promise<boolean> {
     fuzztokModule = await import('@aid-on/fuzztok');
     fuzztokAvailable = true;
     return true;
-  } catch (error) {
+  } catch {
     // Module not available or failed to load
     fuzztokAvailable = false;
     return false;
@@ -45,7 +45,7 @@ export async function estimateTokens(text: string): Promise<number> {
 
   try {
     return fuzztokModule.countTokens(text);
-  } catch (error) {
+  } catch {
     // Fallback on error
     return Math.ceil(text.length / 4);
   }
@@ -84,7 +84,7 @@ export async function robustEstimateTokens(text: string): Promise<number> {
   
   try {
     return await estimateTokens(text);
-  } catch (error) {
+  } catch {
     return simpleFallbackEstimate(text);
   }
 }

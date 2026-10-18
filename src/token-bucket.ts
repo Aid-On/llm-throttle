@@ -170,7 +170,7 @@ export class TokenBucket {
         this._available = storedState.available;
         this._lastRefill = storedState.lastRefill;
       }
-    } catch (error) {
+    } catch {
       // Ignore storage errors during initialization
     } finally {
       this._initialized = true;
